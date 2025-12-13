@@ -1,6 +1,6 @@
 import { JsonPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormUtils } from '../../../utils/form-utils';
 
 @Component({
@@ -22,6 +22,8 @@ export class DynamicPage {
       Validators.minLength(3)
     )
   });
+
+  newFavorite = new FormControl('', Validators.required);
 
   get favoriteGames() {
     return this.myForm.get('favoriteGames') as FormArray;
