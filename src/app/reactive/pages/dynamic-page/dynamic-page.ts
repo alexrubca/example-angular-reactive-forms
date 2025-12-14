@@ -28,4 +28,23 @@ export class DynamicPage {
   get favoriteGames() {
     return this.myForm.get('favoriteGames') as FormArray;
   }
+
+  onAddToFavorites() {
+    if (this.newFavorite.invalid) return;
+
+    const newGame = this.newFavorite.value;
+    this.favoriteGames.push( this.fb.control(newGame, Validators.required) );
+    this.newFavorite.reset();
+  }
+
+  onDeleteFavorite(index: number) {
+    this.favoriteGames.removeAt(index);
+  }
+
+  onSubmit() {
+    if (this.myForm.invalid) {
+      this.myForm.markAllAsTouched();
+      return;
+    }
+  }
 }
